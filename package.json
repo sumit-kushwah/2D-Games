@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "heroku-postbuild": "ng build --prod"
+    "postinstall": "ng build --aot -prod"
   },
   "private": true,
   "dependencies": {
@@ -26,6 +26,8 @@
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "typescript": "~3.8.3",
+    "@angular/cli": "~9.1.0",
+    "@angular/compiler-cli": "~9.1.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
@@ -49,5 +51,9 @@
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~3.8.3"
+  },
+  "engines": {
+    "node": "6.11.1",
+    "npm": "3.10.9"
   }
 }
