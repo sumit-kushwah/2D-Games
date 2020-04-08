@@ -3,6 +3,8 @@
     <h1 >Tic Tac Toe Game</h1>
   </div>
   <hr>
+  <br>
+  <br>
   <div class="row offset-5">
     <div class="col-sm-1 border-right border-bottom" (click)="getClicked(1)">
       <h2 *ngIf="clickedList[0] == 0">#</h2>
@@ -47,8 +49,9 @@
   </div>
   <br>
   <br>
-  <div class="mt-10 header">
+  <div class="header">
     <h1 *ngIf="solved">Player {{ whowin }} have won !!!</h1> 
     <h1 *ngIf="!solved && turn == 9"> Game Tied!!</h1>  
   </div>
+  <p class="text-center header">Note: Refresh the page to RESET  Game</p>
 </div>  
