@@ -7,72 +7,88 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'tictactoe';
-  clickedList = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+  gridSize = 3;
+  grid = [];
   turn = 0;
-  firstList = [];
-  secondList = [];
-  result = [[1, 2, 3], [4, 5, 6], [7, 8, 9],
-  [1, 4, 7], [2, 5, 8], [3, 6, 9],
-  [1, 5, 9], [3, 5, 7]
-  ];
   solved = false;
-  whowin = 0;
-  turnList = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-  getClicked(num : any) {
-    if (this.clickedList[num - 1] == 0) {
-      this.clickedList[num - 1] = 1;
+  whowin = -1;
+  // intialize grid of n * n with value 0
+  intializeGrid() {
+    this.grid = [];
+    this.turn = 0;
+    for (let i = 0; i < this.gridSize; i++) {
+      this.grid.push([]);
+      for (let j = 0; j < this.gridSize; j++) {
+        this.grid[i].push(0);
+      }
+    }
+  }
+  getclicked(i: any, j: any) {
+    if (this.grid[i][j] == 0) {
       this.turn++;
-      this.turnList[num - 1] = this.turn; 
-    }
-    if (this.turn % 2 != 0) {
-      this.firstList.push(num);
-      if (this.firstList.length >= 3 ) {
-        this.solved = this.foundOrNot(this.result, this.firstList);
+      this.grid[i][j] = this.turn;
+      if (!this.solved) {
+        this.solved = this.solvedOrNot(this.grid, this.turn % 2);
         if(this.solved) {
-          this.whowin = 1;
-        }
-      }
-    } else {
-      this.secondList.push(num);
-      if (this.secondList.length >= 3) {
-        this.solved = this.foundOrNot(this.result, this.secondList);
-        if(this.solved) {
-        this.whowin = 2;
+          this.whowin = this.turn % 2;
         }
       }
     }
-    // console.log(this.firstList);
-    // console.log(this.secondList);
-
   }
-  getSign(num: any) {
-    if (this.turnList[num - 1] % 2 != 0) {
+  getSign(i: any, j: any) {
+    if (this.grid[i][j] % 2 != 0) {
       return "O";
-    } else {
+    } else if (this.grid[i][j] % 2 == 0 && this.grid[i][j] != 0){
       return "X";
+    } else {
+      return "";
     }
   }
-  foundOrNot(result: any, arr: any) {
-    arr.sort();
-    // console.log(result);
-    // console.log(arr);
-    // let templist = [];
-    for (let i = 0; i < result.length; i++) {
-      let count = 0;
-      let temp = result[i];
-      for (let j = 0; j < arr.length; j++) {
-        if(arr[j] == temp[count]) {
-          count ++;
-        }
-        if (count == 3) {
-          // templist.push(count);
-          // console.log(templist);
-          return true;
+  solvedOrNot(grid: any, rem: any) {
+    if (grid.length == 0) {
+      return false;
+    }
+    let len1 = grid.length;
+    let len2 = grid.length;
+    // checking for horizontal lines
+    for (let i = 0; i < grid.length; i++) {
+       len1 = grid[i].length;
+      for (let j = 0; j < grid[i].length; j++) {
+        if (grid[i][j] % 2 == rem && grid[i][j] != 0) {
+          len1 --;
         }
       }
-      
-      
+      if (len1 == 0) {
+        return true;
+      }
+    }
+    //checking for vertical lines
+    for (let j = 0; j < grid.length; j++) {
+      len2 = grid[j].length;
+      for (let i = 0; i < grid[j].length; i++) {
+        if (grid[i][j] % 2 == rem && grid[i][j] != 0) {
+          len2 --;
+        }
+      }
+      if (len2 == 0 ) {
+        return true;
+      }
+    }
+    //checking for diagnal lines
+    len1 = grid.length;
+    len2 = grid.length;
+    for (let i = 0; i < grid.length; i++) {
+      if (grid[i][i] % 2 == rem && grid[i][i] != 0) {
+        len1 --;
+      }
+      if (grid[grid.length - i -1][i] % 2 == rem && grid[grid.length - i -1][i] != 0) {
+        len2 --;
+      }
+    }
+    if ((len1 == 0 ||  len2 == 0)) {
+      return true;
     }
     return false;
   }
+  
 }
