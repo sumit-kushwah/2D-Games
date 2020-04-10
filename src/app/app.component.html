@@ -14,9 +14,9 @@
   <div *ngIf="grid.length != 0">
     <div class="row size">
       <table>
-        <tr *ngFor="let i of grid; let ii = index">
-          <td *ngFor="let j of grid[0]; let jj = index">
-              <div (click)="getclicked(ii, jj) " class="text-center size border" ><h1 class="mt-4" [innerText]="getSign(ii, jj)"></h1></div>
+        <tr *ngFor="let i of grid; let row = index">
+          <td *ngFor="let j of grid[0]; let col = index">
+              <div (click)="getclicked(row, col) " class="text-center size border" [ngStyle]="{backgroundColor: getColor(row, col)}"><h1 class="mt-4" [innerText]="getSign(row, col)"></h1></div>
           </td>
         </tr>
       </table>
