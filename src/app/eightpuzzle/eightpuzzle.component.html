@@ -1,0 +1,27 @@
+<div class="container text-center ">
+  <div class="mt-4 header text-center">
+    <h1>8-Puzzle Game</h1>
+  </div>
+  <hr>
+  <div>
+    <div class="row size">
+      <table>
+        <tr *ngFor="let i of grid; let row = index">
+          <td *ngFor="let j of grid[0]; let col = index">
+            <div class="text-center size border" (click)="onTileClick(row, col)">
+              <h1 class="mt-4" [innerText]="grid[row][col] != 0 ? grid[row][col] : ''"
+              style="cursor: pointer;"></h1>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <button type="button" (click)="autoSolvePuzzle()" class="btn btn-success mt-4">Auto Solve</button>
+    <div class="header row mt-4 ">
+      <h1 class="offset-5 " *ngIf="this.isPuzzleSolved()">Solved!!</h1>
+      <h1 class="offset-4 ">Total Moves: {{this.moves}}</h1>
+    </div>
+  </div>
+  <br>
+  <p class="text-center header">Note: Refresh the page to Restart Game</p>
+</div>
