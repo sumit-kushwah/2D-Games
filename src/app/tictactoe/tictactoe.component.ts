@@ -16,33 +16,39 @@ export class TictactoeComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-  
+  ngOnInit(): void { }
+
   // intialize grid of n * n with value 0
   intializeGrid() {
     this.grid = [];
     this.turn = 0;
-    for (let i = 0; i < this.gridSize; i++) {
-      this.grid.push([]);
-      for (let j = 0; j < this.gridSize; j++) {
-        this.grid[i].push(0);
+    if (this.gridSize >= 3 && this.gridSize <= 8) {
+      for (let i = 0; i < this.gridSize; i++) {
+        this.grid.push([]);
+        for (let j = 0; j < this.gridSize; j++) {
+          this.grid[i].push(0);
+        }
       }
     }
+    else {
+      alert("Valid GridSize [3 to 8]");
+    }
   }
+
   getclicked(i: any, j: any) {
     if (this.grid[i][j] == 0) {
       this.turn++;
       this.grid[i][j] = this.turn;
       if (!this.solved) {
         this.solved = this.solvedOrNot(this.grid, this.turn % 2);
-        if(this.solved) {
+        if (this.solved) {
           this.whowin = this.turn % 2;
         }
       }
     }
   }
-  getColor(row: number, col:number) {
+
+  getColor(row: number, col: number) {
     if (this.whowin != -1) {
       for (let i = 0; i < this.winningrow.length; i += 2) {
         if (row == this.winningrow[i] && col == this.winningrow[i + 1]) {
@@ -52,15 +58,17 @@ export class TictactoeComponent implements OnInit {
     }
     return "white";
   }
+
   getSign(i: any, j: any) {
     if (this.grid[i][j] % 2 != 0) {
       return "O";
-    } else if (this.grid[i][j] % 2 == 0 && this.grid[i][j] != 0){
+    } else if (this.grid[i][j] % 2 == 0 && this.grid[i][j] != 0) {
       return "X";
     } else {
       return "";
     }
   }
+
   solvedOrNot(grid: any, rem: any) {
     this.winningrow = [];
     if (grid.length == 0) {
@@ -70,10 +78,10 @@ export class TictactoeComponent implements OnInit {
     let len2 = grid.length;
     // checking for horizontal lines
     for (let i = 0; i < grid.length; i++) {
-       len1 = grid[i].length;
+      len1 = grid[i].length;
       for (let j = 0; j < grid[i].length; j++) {
         if (grid[i][j] % 2 == rem && grid[i][j] != 0) {
-          len1 --;
+          len1--;
           this.winningrow.push(i);
           this.winningrow.push(j);
         }
@@ -88,12 +96,12 @@ export class TictactoeComponent implements OnInit {
       len2 = grid[j].length;
       for (let i = 0; i < grid[j].length; i++) {
         if (grid[i][j] % 2 == rem && grid[i][j] != 0) {
-          len2 --;
+          len2--;
           this.winningrow.push(i);
           this.winningrow.push(j);
         }
       }
-      if (len2 == 0 ) {
+      if (len2 == 0) {
         return true;
       }
     }
@@ -103,7 +111,7 @@ export class TictactoeComponent implements OnInit {
     len2 = grid.length;
     for (let i = 0; i < grid.length; i++) {
       if (grid[i][i] % 2 == rem && grid[i][i] != 0) {
-        len1 --;
+        len1--;
         this.winningrow.push(i);
         this.winningrow.push(i);
       }
@@ -113,9 +121,9 @@ export class TictactoeComponent implements OnInit {
     }
     this.winningrow = [];
     for (let i = 0; i < grid.length; i++) {
-      if (grid[grid.length - i -1][i] % 2 == rem && grid[grid.length - i -1][i] != 0) {
-        len2 --;
-        this.winningrow.push(grid.length - i -1);
+      if (grid[grid.length - i - 1][i] % 2 == rem && grid[grid.length - i - 1][i] != 0) {
+        len2--;
+        this.winningrow.push(grid.length - i - 1);
         this.winningrow.push(i);
       }
     }
@@ -124,6 +132,4 @@ export class TictactoeComponent implements OnInit {
     }
     return false;
   }
-
-
 }

@@ -8,7 +8,8 @@
       <table>
         <tr *ngFor="let i of grid; let row = index">
           <td *ngFor="let j of grid[0]; let col = index">
-            <div class="text-center size border" (click)="onTileClick(row, col)">
+            <div class="text-center size border" (click)="onTileClick(row, col)"
+            style="background:	rgb(144,238,144);">
               <h1 class="mt-4" [innerText]="grid[row][col] != 0 ? grid[row][col] : ''"
               style="cursor: pointer;"></h1>
             </div>

@@ -15,6 +15,7 @@ export class EightpuzzleComponent implements OnInit {
 
   ngOnInit(): void {
     let randomPermutation = this.randamizePermutation(9);
+    randomPermutation = this.getSolvableList(randomPermutation);
     for (let i = 0; i < 3; i++) {
       this.grid.push([]);
       for (let j = 0; j < 3; j++) {
@@ -114,4 +115,31 @@ export class EightpuzzleComponent implements OnInit {
     alert("Sorry!! This functionality is not implemented yet!!");
   }
 
+  inversionCount(list) {
+    let invCount = 0;
+    for (let i = 0; i < list.length; i++) {
+      for (let j = 0; j < list.length; j++) {
+        if (list[i] > list[j]) {
+          invCount++;
+        }
+      }
+    }
+    return invCount;
+  }
+
+  getSolvableList(list) {
+    if (this.inversionCount(list) % 2 == 0) {
+      return list;
+    } else {
+      for (let i = list.length - 1; i >= 0; i--) {
+        if (list[i] < list[i - 1]) {
+          let temp = list[i];
+          list[i] = list[i + 1];
+          list[i + 1] = temp;
+          break;
+        }
+      }
+    }
+    return list;
+  }
 }
