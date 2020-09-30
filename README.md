@@ -1,11 +1,12 @@
-# Tictactoe
+## 2D Games
 
-This project contains small games like tictactoe.
+Simple 2D Games (Implemented using HTML, CSS and TS) 
 
-## Development server
+#### Games
+- [X] Tictactoe
+- [X] 8 Puzzle
+- [ ] Chess
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
+## Website
 
-## Live server
-
-[click here](https://smallgames-b79a5.web.app/tictactoe) to check this application.
+[click here](https://smallgames-b79a5.web.app/tictactoe) to enjoy these games :smile:.
