@@ -5,7 +5,7 @@ Simple 2D Games (Implemented using HTML, CSS and TS)
 #### Games
 - [X] Tictactoe
 - [X] 8 Puzzle
-- [ ] Chess
+- [ ] Chess (In developement...) 
 
 ## Website
 
