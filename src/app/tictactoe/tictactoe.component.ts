@@ -58,7 +58,6 @@ export class TictactoeComponent implements OnInit {
     }
     return "white";
   }
-
   getSign(i: any, j: any) {
     if (this.grid[i][j] % 2 != 0) {
       return "O";

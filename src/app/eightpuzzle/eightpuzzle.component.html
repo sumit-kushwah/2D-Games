@@ -1,28 +1,38 @@
-<div class="container text-center ">
+<div class="container">
   <div class="mt-4 header text-center">
-    <h1>8-Puzzle Game</h1>
+    <h3>8 Puzzle Game</h3>
   </div>
-  <hr>
-  <div>
-    <div class="row size">
-      <table>
-        <tr *ngFor="let i of grid; let row = index">
-          <td *ngFor="let j of grid[0]; let col = index">
-            <div class="text-center size border" (click)="onTileClick(row, col)"
-            style="background:	rgb(144,238,144);">
-              <h1 class="mt-4" [innerText]="grid[row][col] != 0 ? grid[row][col] : ''"
-              style="cursor: pointer;"></h1>
-            </div>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <button type="button" (click)="autoSolvePuzzle()" class="btn btn-success mt-4">Auto Solve</button>
-    <div class="header row mt-4 ">
-      <h1 class="offset-5 " *ngIf="this.isPuzzleSolved()">Solved!!</h1>
-      <h1 class="offset-4 ">Total Moves: {{this.moves}}</h1>
-    </div>
+  <hr />
+  <div class="row">
+    <table>
+      <tr *ngFor="let i of grid; let row = index">
+        <td *ngFor="let j of grid[0]; let col = index">
+          <div
+            class="text-center size border"
+            (click)="onTileClick(row, col)"
+            style="background: rgb(241, 217, 181)"
+          >
+            <h1
+              class="mt-4"
+              [innerText]="grid[row][col] != 0 ? grid[row][col] : ''"
+              style="cursor: pointer"
+            ></h1>
+          </div>
+        </td>
+      </tr>
+    </table>
   </div>
-  <br>
-  <p class="text-center header">Note: Refresh the page to Restart Game</p>
+
+  <div class="bottom">
+    <button
+      type="button"
+      (click)="autoSolvePuzzle()"
+      class="btn btn-success mt-4"
+    >
+      Auto Solve
+    </button>
+      <h1  *ngIf="this.isPuzzleSolved()">Solved!!</h1>
+      <h3 >Total Moves: {{ this.moves }}</h3>
+    <p class="header">Note: Refresh the page to Restart Game</p>
+  </div>
 </div>

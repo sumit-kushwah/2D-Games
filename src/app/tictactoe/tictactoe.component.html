@@ -1,10 +1,10 @@
 <div class="container text-center">
   <div class="mt-4 header">
-    <h1>Tic Tac Toe</h1>
+    <h3>Tic Tac Toe</h3>
   </div>
   <hr>
   <div class="row size " *ngIf="grid.length == 0">
-    <div class="col-xs-12 offset-5">
+    <div class="col-xs-12 enter">
       <label for="gridSize " class="header">Enter the size of Grid</label>
       <input type="number" id="gridSize" class="form-control" [(ngModel)]="gridSize" min="3" max="7">
       <br>
@@ -12,22 +12,33 @@
     </div>
   </div>
   <div *ngIf="grid.length != 0">
-    <div class="row size">
+    <div class="size">
       <table>
         <tr *ngFor="let i of grid; let row = index">
           <td *ngFor="let j of grid[0]; let col = index">
-            <div (click)="getclicked(row, col) " class="text-center size border"
-              [ngStyle]="{backgroundColor: getColor(row, col)}">
+            <div (click)="getclicked(row, col) " class="text-center size"
+              [ngStyle]="{backgroundColor: getColor(row, col)}"
+              [ngClass]="
+              {'top-left': (row == 0 && col == 0),
+              'top-center': (row == 0 && col == 1),
+              'top-right': (row == 0 && col == 2),
+              'center-left': (row == 1 && col == 0),
+              'center-center': (row == 1 && col == 1),
+              'center-right': (row == 1 && col == 2),
+              'bottom-left': (row == 2 && col == 0),
+              'bottom-center': (row == 2 && col == 1),
+              'bottom-right': (row == 2 && col == 2)}
+              ">
               <h1 class="mt-4" [innerText]="getSign(row, col)"></h1>
             </div>
           </td>
         </tr>
       </table>
     </div>
-    <div class="header row mt-5 ">
-      <h1 *ngIf="whowin == 1" class="offset-4 ">Player one won !!!</h1>
-      <h1 *ngIf="whowin == 0" class="offset-4"> Player two won !!!</h1>
-      <h1 *ngIf="whowin == -1 && turn == gridSize * gridSize " class="offset-4"> Game Tied!!!</h1>
+    <div class="header mt-5 ">
+      <h1 *ngIf="whowin == 1" >Player one won !!!</h1>
+      <h1 *ngIf="whowin == 0" > Player two won !!!</h1>
+      <h1 *ngIf="whowin == -1 && turn == gridSize * gridSize " > Game Tied!!!</h1>
     </div>
   </div>
   <br>
