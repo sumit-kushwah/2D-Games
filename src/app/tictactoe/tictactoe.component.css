@@ -74,3 +74,13 @@ table {
   border-left: 1px solid #333;
   border-top: 1px solid #333;
 }
+
+.icon {
+  display: block;
+  padding: 10px;
+  font-size: 30px;
+}
+
+i {
+  cursor: pointer;
+}

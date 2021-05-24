@@ -40,7 +40,10 @@
       <h1 *ngIf="whowin == 0" > Player two won !!!</h1>
       <h1 *ngIf="whowin == -1 && turn == gridSize * gridSize " > Game Tied!!!</h1>
     </div>
+    <br>
+    <span class="icon">
+      <i class="fas fa-redo-alt" (click)="intializeGrid()" title="refresh"></i>
+    </span>
+    <!-- <button class="refreshButton btn">Refresh</button> -->
   </div>
-  <br>
-  <p class="text-center header">Note: Refresh the page to Restart Game</p>
 </div>

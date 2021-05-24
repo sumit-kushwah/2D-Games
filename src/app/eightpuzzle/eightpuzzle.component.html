@@ -32,7 +32,10 @@
       Auto Solve
     </button>
       <h1  *ngIf="this.isPuzzleSolved()">Solved!!</h1>
-      <h3 >Total Moves: {{ this.moves }}</h3>
-    <p class="header">Note: Refresh the page to Restart Game</p>
+      <h3 class="mt-3" >Total Moves: {{ this.moves }}</h3>
+      <span class="icon">
+        <i class="fas fa-redo-alt" (click)="intializeGrid()" title="refresh"></i>
+      </span>
+    <!-- <p class="header">Note: Refresh the page to Restart Game</p> -->
   </div>
 </div>

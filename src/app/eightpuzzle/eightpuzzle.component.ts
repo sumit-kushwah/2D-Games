@@ -14,6 +14,12 @@ export class EightpuzzleComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.intializeGrid();
+  }
+
+  intializeGrid() {
+    this.moves = 0;
+    this.grid = [];
     let randomPermutation = this.randamizePermutation(9);
     randomPermutation = this.getSolvableList(randomPermutation);
     for (let i = 0; i < 3; i++) {
@@ -48,7 +54,7 @@ export class EightpuzzleComponent implements OnInit {
   getRandomIntInclusive(min: number, max: number) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
+    return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
   }
 
   changeGridState() {

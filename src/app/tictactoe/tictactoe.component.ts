@@ -22,6 +22,9 @@ export class TictactoeComponent implements OnInit {
   intializeGrid() {
     this.grid = [];
     this.turn = 0;
+    this.solved = false;
+    this.whowin = -1;
+    this.winningrow = [];
     if (this.gridSize >= 3 && this.gridSize <= 8) {
       for (let i = 0; i < this.gridSize; i++) {
         this.grid.push([]);
