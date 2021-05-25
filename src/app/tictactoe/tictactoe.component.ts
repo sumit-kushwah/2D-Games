@@ -72,7 +72,6 @@ export class TictactoeComponent implements OnInit {
   }
 
   solvedOrNot(grid: any, rem: any) {
-    this.winningrow = [];
     if (grid.length == 0) {
       return false;
     }
@@ -80,6 +79,7 @@ export class TictactoeComponent implements OnInit {
     let len2 = grid.length;
     // checking for horizontal lines
     for (let i = 0; i < grid.length; i++) {
+      this.winningrow = [];
       len1 = grid[i].length;
       for (let j = 0; j < grid[i].length; j++) {
         if (grid[i][j] % 2 == rem && grid[i][j] != 0) {
@@ -93,8 +93,8 @@ export class TictactoeComponent implements OnInit {
       }
     }
     //checking for vertical lines
-    this.winningrow = [];
     for (let j = 0; j < grid.length; j++) {
+      this.winningrow = [];
       len2 = grid[j].length;
       for (let i = 0; i < grid[j].length; i++) {
         if (grid[i][j] % 2 == rem && grid[i][j] != 0) {
